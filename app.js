@@ -28,6 +28,17 @@ const fs = require('fs');
 const viewResource=require('./routes/viewResource');
 const viewRoster=require('./routes/viewRoster');
 const AWS = require("aws-sdk");
+var MySQLStore = require('express-mysql-session')(session);
+
+var options = {
+	host: 'localhost',
+	port: 3306,
+	user: 'session_test',
+	password: 'password',
+	database: 'session_test'
+};
+
+var sessionStore = new MySQLStore(options);
 const s3 = new AWS.S3();
 // authorization\auth.js
 const app = express();
@@ -67,7 +78,8 @@ app.use(
     saveUninitialized: false,
     cookie: {
       //max age is 20 minutes
-      maxAge: 1000 * 60 * 20
+      maxAge: 1000 * 60 * 20,
+      sameSite: "lax"
     }
   }
   )
@@ -118,6 +130,7 @@ app.get("/del_student_course",(req,res)=>{
 
 app.get("/studenthome",(req,res)=>{
   console.log(req.session.userinfo);
+  console.log(req.cookies);
   if(req.session.userinfo && req.session.userinfo.role == 'student'){
     viewCourses.viewCourses(req.session.userinfo.username, req.session.userinfo.role, res);
   } else {

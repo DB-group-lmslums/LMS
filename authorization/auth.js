@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs");
 const cookieParser = require('cookie-parser')
 const dotenv = require("dotenv").config();
 
+
 const login = async (username,password, res, req) => {
     try {
         if (!username || !password) {
@@ -41,6 +42,7 @@ const login = async (username,password, res, req) => {
                 }
                 else if (results[0].role == 'student')
                 {
+                    res.cookie('visitorid',username, { maxAge: 900000, httpOnly: true });
                     req.session.userinfo = {
                         username: username,
                         role: 'student',
