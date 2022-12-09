@@ -64,19 +64,23 @@ app.use(
   session({
     secret: 'jdsaid28y377321njdFASDQEN87HW123#!@32UDASD132',
     resave: false,
-    saveUninitialized: true,
-    proxy: true, // Required for Heroku & Digital Ocean (regarding X-Forwarded-For)
-    name: 'MyCoolWebAppCookieName', // This needs to be unique per-host.
+    saveUninitialized: false,
     cookie: {
       //max age is 20 minutes
-      httpOnly: true, secure: true, maxAge: 1000 * 60 * 60 * 48, sameSite: 'none' 
-    },
-    userinfo: {
-      username: "shabbir", role: "admin", courseID: 555, sem: "fall", year: 2020, httpOnly: true, secure: true, maxAge: 1000 * 60 * 60 * 48, sameSite: 'none' 
+      maxAge: 1000 * 60 * 20, 
+      userinfo:{
+        username: "shabbir",
+        role: "admin",
+        courseID: 225,
+        sem: "fall",
+        year: 2022
+      }
+      
     }
   }
   )
 );
+
 
 
 
