@@ -21,6 +21,20 @@ const login = async (username,password, res, req) => {
             else {
                 if (results[0].role == 'instructor')
                 {
+                    req.sessionStore.userinfo = {
+                        username: username,
+                        role: 'instructor',
+                        courseID: null,
+                        sem : null,
+                        year : null
+                    };
+                    res.cookie.userinfo = {
+                        username: username,
+                        role: 'instructor',
+                        courseID: null,
+                        sem : null,
+                        year : null
+                    };
                     req.session.userinfo = {
                         username: username,
                         role: 'instructor',

@@ -62,8 +62,8 @@ app.use(cookieParser());
 app.use(
   session({
     secret: 'jdsaid28y377321njdFASDQEN87HW123#!@32UDASD132',
-    resave: true,
-    saveUninitialized: true,
+    resave: false,
+    saveUninitialized: false,
     cookie: {
       //max age is 20 minutes
       maxAge: 1000 * 60 * 20 
@@ -349,6 +349,8 @@ app.post("/studenthome", async (req,res)=>{
     console.log(y);
     console.log(z);
     console.log(req.session);
+    console.log("store:", req.sessionStore);
+    console.log("cookie:", req.cookies);
     req.session.userinfo.courseID = x;
     req.session.userinfo.sem = y;
     req.session.userinfo.year = z;
