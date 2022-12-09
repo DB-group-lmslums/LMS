@@ -58,6 +58,7 @@ const { concat } = require("lodash");
 const { start } = require("repl");
 // const { viewCourses } = require("./routes/viewCourses");
 
+MemcachedStore = require("connect-memcached")(session);
 app.use(cookieParser());
 app.use(
   session({
@@ -67,15 +68,18 @@ app.use(
     cookie: {
       //max age is 20 minutes
       maxAge: 1000 * 60 * 20 
-    }
-  })
+    },
+    name : 'shabbir',
+  }
+  )
 );
 
 
 
 
 app.get("/main",(req,res)=>{
-
+  console.log(req.session.userinfo);
+  console.log(req.session);
   res.render("main", {message: ""}); // file name original 
 });
 
