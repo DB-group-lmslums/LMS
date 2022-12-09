@@ -347,6 +347,7 @@ app.post("/studenthome", async (req,res)=>{
     console.log(x);
     console.log(y);
     console.log(z);
+    console.log(req.session.userinfo);
     req.session.userinfo.courseID = x;
     req.session.userinfo.sem = y;
     req.session.userinfo.year = z;
