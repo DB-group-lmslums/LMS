@@ -129,8 +129,6 @@ app.get("/del_student_course",(req,res)=>{
 );
 
 app.get("/studenthome",(req,res)=>{
-  console.log(req.session.userinfo);
-  console.log(req.cookies);
   if(req.session.userinfo && req.session.userinfo.role == 'student'){
     viewCourses.viewCourses(req.session.userinfo.username, req.session.userinfo.role, res);
   } else {
@@ -541,6 +539,7 @@ app.get('/viewResources',(req,res)=>{
 });
 
 app.get('/viewRoster',(req,res)=>{
+  console.log(req.cookies);
   viewRoster.viewRoster(req.session.userinfo.courseID,req.session.userinfo.year,req.session.userinfo.sem,res);
 });
 
