@@ -62,16 +62,14 @@ MemcachedStore = require("connect-memcached")(session);
 app.use(cookieParser());
 app.use(
   session({
-    store: new MemcachedStore({
-      hosts: ["cute-gray-lemur-veil.cyclic.app"],
-      secret: "jdsaid28y377321njdFASDQEN87HW123#!@32UDASD132",
-    }),
     secret: 'jdsaid28y377321njdFASDQEN87HW123#!@32UDASD132',
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
+    proxy: true, // Required for Heroku & Digital Ocean (regarding X-Forwarded-For)
+    name: 'MyCoolWebAppCookieName', // This needs to be unique per-host.
     cookie: {
       //max age is 20 minutes
-      maxAge: 1000 * 60 * 20 
+      httpOnly: true, secure: true, maxAge: 1000 * 60 * 60 * 48, sameSite: 'none' 
     }
   }
   )
