@@ -79,10 +79,6 @@ app.use(
 
 
 app.get("/main",(req,res)=>{
-  console.log(req.session.userinfo);
-  console.log(req.session);
-  localStorage.setItem('username', req.session.userinfo.username);
-  localStorage.setItem('role', req.session.userinfo.role);
   console.log(localStorage.getItem('username'));
   res.render("main", {message: ""}); // file name original 
 });
@@ -483,6 +479,7 @@ app.post("/assignmentsTab", (req, res) => {
 });
 
 app.get("/viewFeedback", (req, res) => {
+  console.log(req.session.cookie.userinfo);
   courseID = req.session.userinfo.courseID; // need to somehow store the course's specific ids here
   sem = req.session.userinfo.sem;
   year = req.session.userinfo.year;
