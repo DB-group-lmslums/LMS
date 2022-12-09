@@ -42,7 +42,8 @@ const login = async (username,password, res, req) => {
                 }
                 else if (results[0].role == 'student')
                 {
-                    res.cookie('visitorid',username, { maxAge: 900000, httpOnly: true });
+                    res.cookie('username',username, { maxAge: 900000, httpOnly: true });
+
                     req.session.userinfo = {
                         username: username,
                         role: 'student',

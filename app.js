@@ -539,7 +539,7 @@ app.get('/viewResources',(req,res)=>{
 });
 
 app.get('/viewRoster',(req,res)=>{
-  console.log(req.cookies);
+  console.log("COOKIES:" ,req.cookies);
   viewRoster.viewRoster(req.session.userinfo.courseID,req.session.userinfo.year,req.session.userinfo.sem,res);
 });
 
