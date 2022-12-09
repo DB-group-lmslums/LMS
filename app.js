@@ -67,7 +67,7 @@ app.use(
     saveUninitialized: false,
     cookie: {
       //max age is 20 minutes
-      maxAge: 1000 * 60 * 20 
+      maxAge: 1000 * 60 * 20
     }
   }
   )
@@ -77,14 +77,11 @@ app.use(
 
 
 
-
 app.get("/main",(req,res)=>{
-  console.log(localStorage.getItem('username'));
   res.render("main", {message: ""}); // file name original 
 });
 
 app.get("/adminHome",(req,res)=>{
-  console.log(req.session.userinfo);
   if(req.session.userinfo && req.session.userinfo.role == 'admin'){
     res.render("adminhome", {message: ""}); // file name original 
   } else {
@@ -122,8 +119,6 @@ app.get("/del_student_course",(req,res)=>{
 app.get("/studenthome",(req,res)=>{
   console.log(req.session.userinfo);
   if(req.session.userinfo && req.session.userinfo.role == 'student'){
-    // call the viewCourses function
-    // send the session.userinfo to client in response
     viewCourses.viewCourses(req.session.userinfo.username, req.session.userinfo.role, res);
   } else {
     res.redirect("/main");
@@ -345,9 +340,7 @@ app.post("/studenthome", async (req,res)=>{
     console.log(x);
     console.log(y);
     console.log(z);
-    console.log(req.session);
-    console.log("store:", req.sessionStore);
-    console.log("cookie:", req.cookies);
+    console.log(session.userinfo);
     req.session.userinfo.courseID = x;
     req.session.userinfo.sem = y;
     req.session.userinfo.year = z;
@@ -356,6 +349,7 @@ app.post("/studenthome", async (req,res)=>{
       res.redirect("/assignmentsTab");
     }
     else if(obj.tab == "viewFeedback") {
+      req.session.userinfo.courseID = x;
       res.redirect("/viewFeedback");
     }
     else if(obj.tab == "viewResources") {
@@ -479,7 +473,6 @@ app.post("/assignmentsTab", (req, res) => {
 });
 
 app.get("/viewFeedback", (req, res) => {
-  console.log(req.session.cookie.userinfo);
   courseID = req.session.userinfo.courseID; // need to somehow store the course's specific ids here
   sem = req.session.userinfo.sem;
   year = req.session.userinfo.year;
