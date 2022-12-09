@@ -340,10 +340,6 @@ app.post("/studenthome", async (req,res)=>{
     console.log(x);
     console.log(y);
     console.log(z);
-    // console.log("req ies:", req.cookies.userinfo)
-    // console.log("req ie:", req.cookie.userinfo)
-    console.log("req sess:", req.session.userinfo)
-    console.log("res:", res.cookies.userinfo)
     req.session.userinfo.courseID = x;
     req.session.userinfo.sem = y;
     req.session.userinfo.year = z;

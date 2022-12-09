@@ -41,13 +41,6 @@ const login = async (username,password, res, req) => {
                 }
                 else if (results[0].role == 'student')
                 {
-                    res.cookie.userinfo = {
-                        username: username,
-                        role: 'student',
-                        courseID: null,
-                        sem : null,
-                        year : null
-                    };
                     req.session.userinfo = {
                         username: username,
                         role: 'student',
