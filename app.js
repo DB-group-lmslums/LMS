@@ -67,15 +67,7 @@ app.use(
     saveUninitialized: false,
     cookie: {
       //max age is 20 minutes
-      maxAge: 1000 * 60 * 20, 
-      userinfo:{
-        username: "shabbir",
-        role: "admin",
-        courseID: 225,
-        sem: "fall",
-        year: 2022
-      }
-      
+      maxAge: 1000 * 60 * 20 
     }
   }
   )
@@ -85,9 +77,13 @@ app.use(
 
 
 
+
 app.get("/main",(req,res)=>{
   console.log(req.session.userinfo);
   console.log(req.session);
+  localStorage.setItem('username', req.session.userinfo.username);
+  localStorage.setItem('role', req.session.userinfo.role);
+  console.log(localStorage.getItem('username'));
   res.render("main", {message: ""}); // file name original 
 });
 
