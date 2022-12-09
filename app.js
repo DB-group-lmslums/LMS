@@ -62,6 +62,10 @@ MemcachedStore = require("connect-memcached")(session);
 app.use(cookieParser());
 app.use(
   session({
+    store: new MemcachedStore({
+      hosts: ["cyclic.sh", "localhost:11211"],
+      secret: "jdsaid28y377321njdFASDQEN87HW123#!@32UDASD132",
+    }),
     secret: 'jdsaid28y377321njdFASDQEN87HW123#!@32UDASD132',
     resave: false,
     saveUninitialized: false,
@@ -129,13 +133,6 @@ app.get("/studenthome",(req,res)=>{
   }
 }
 );
-//     res.render("studenthome", {message: ""}); // file name original 
-//   } else {
-//     res.redirect("/main");
-//   }
-
-// }
-// );
 
 app.get("/removeExistingCourse",(req,res)=>{
   res.render("removeExistingCourse", {message: ""}); // file name original 
@@ -544,6 +541,6 @@ app.get('/viewRoster',(req,res)=>{
   viewRoster.viewRoster(req.session.userinfo.courseID,req.session.userinfo.year,req.session.userinfo.sem,res);
 });
 
-app.listen(5000,()=>{
+app.listen(port,()=>{
   console.log("Server has started on port 5000");
 });
