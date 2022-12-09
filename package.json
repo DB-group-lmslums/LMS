@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@cyclic.sh/session-store": "^0.0.17",
     "aws-sdk": "^2.1271.0",
     "bcryptjs": "^2.4.3",
     "connect-memcached": "^2.0.0",
