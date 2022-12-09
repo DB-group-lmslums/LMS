@@ -68,8 +68,7 @@ app.use(
     cookie: {
       //max age is 20 minutes
       maxAge: 1000 * 60 * 20 
-    },
-    name : 'shabbir',
+    }
   }
   )
 );

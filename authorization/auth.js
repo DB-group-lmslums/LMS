@@ -4,6 +4,19 @@ const bcrypt = require("bcryptjs");
 const cookieParser = require('cookie-parser')
 const dotenv = require("dotenv").config();
 
+// make a function to set req.session.userinfo
+
+setSession = (req, username, role, courseID, sem, year) => {
+    req.session.userinfo = {
+        username: username,
+        role: role,
+        courseID: courseID,
+        sem : sem,
+        year : year
+    };
+}
+
+
 const login = async (username,password, res, req) => {
     try {
         if (!username || !password) {
@@ -21,32 +34,18 @@ const login = async (username,password, res, req) => {
             else {
                 if (results[0].role == 'instructor')
                 {
-                    req.session.userinfo = {
-                        username: username,
-                        role: 'instructor',
-                        courseID: null,
-                        sem : null,
-                        year : null
-                    };
+                    await setSession(req, username, 'instructor', null, null, null);
+                    
                     res.redirect("/instructorhome");
                 }
                 else if (results[0].role == 'admin')
                 {
-                    req.session.userinfo = {
-                        username: username,
-                        role: 'admin',
-                    };
+                    await setSession(req, username, 'admin', null, null, null);
                     res.redirect("/adminHome");
                 }
                 else if (results[0].role == 'student')
                 {
-                    req.session.userinfo = {
-                        username: username,
-                        role: 'student',
-                        courseID: null,
-                        sem : null,
-                        year : null
-                    };
+                    await setSession(req, username, 'student', null, null, null);
                     res.redirect("/studenthome");
                 }
                 // const token = jwt.sign({ id: results[0].id }, process.env.JWT_SECRET, {
