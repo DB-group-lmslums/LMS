@@ -70,14 +70,10 @@ app.use(
     cookie: {
       //max age is 20 minutes
       httpOnly: true, secure: true, maxAge: 1000 * 60 * 60 * 48, sameSite: 'none' 
+    },
+    userinfo: {
+      username: "shabbir", role: "admin", courseID: 555, sem: "fall", year: 2020, httpOnly: true, secure: true, maxAge: 1000 * 60 * 60 * 48, sameSite: 'none' 
     }
-  },
-  {
-    userinfo: {username: "shabbir", role: "student", courseID: 225, sem: "Fall", year: 2020,
-      maxAge: 1000 * 60 * 60 * 48, sameSite: 'none',  resave: false,
-      saveUninitialized: true,
-    }
-
   }
   )
 );
