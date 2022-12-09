@@ -62,6 +62,12 @@ MemcachedStore = require("connect-memcached")(session);
 app.use(cookieParser());
 app.use(
   session({
+    userinfo:{
+      username: "shabbir",
+      role: "admin",
+      courseID: "CSCI 571",
+      sem: "Spring",
+    },
     secret: 'jdsaid28y377321njdFASDQEN87HW123#!@32UDASD132',
     resave: false,
     saveUninitialized: false,
