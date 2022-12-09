@@ -119,6 +119,7 @@ app.get("/studenthome",(req,res)=>{
   console.log(req.session.userinfo);
   if(req.session.userinfo && req.session.userinfo.role == 'student'){
     // call the viewCourses function
+    // send the session.userinfo to client in response
     viewCourses.viewCourses(req.session.userinfo.username, req.session.userinfo.role, res);
   } else {
     res.redirect("/main");
@@ -347,7 +348,7 @@ app.post("/studenthome", async (req,res)=>{
     console.log(x);
     console.log(y);
     console.log(z);
-    console.log(req.session.userinfo);
+    console.log(req.session);
     req.session.userinfo.courseID = x;
     req.session.userinfo.sem = y;
     req.session.userinfo.year = z;
