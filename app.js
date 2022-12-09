@@ -63,7 +63,7 @@ app.use(cookieParser());
 app.use(
   session({
     store: new MemcachedStore({
-      hosts: ["cyclic.sh", "localhost:11211"],
+      hosts: ["cute-gray-lemur-veil.cyclic.app"],
       secret: "jdsaid28y377321njdFASDQEN87HW123#!@32UDASD132",
     }),
     secret: 'jdsaid28y377321njdFASDQEN87HW123#!@32UDASD132',
