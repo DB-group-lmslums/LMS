@@ -31,18 +31,13 @@ const AWS = require("aws-sdk");
 const s3 = new AWS.S3();
 // authorization\auth.js
 const app = express();
-const { CyclicSessionStore } = require("@cyclic.sh/session-store");
+
 const port = process.env.PORT || 5000
 
 
 let courseID, sem, year; // please update these in course tab and stuff
 // let assessmentID = 0; // when starting out, no assessments
 
-const options = {
-  table: {
-    name: process.env.CYCLIC_DB,
-  }
-};
 
 // db.connect((err) => {
 //   if(err){
@@ -67,7 +62,6 @@ MemcachedStore = require("connect-memcached")(session);
 app.use(cookieParser());
 app.use(
   session({
-    store: new CyclicSessionStore(options),
     secret: 'jdsaid28y377321njdFASDQEN87HW123#!@32UDASD132',
     resave: false,
     saveUninitialized: false,
